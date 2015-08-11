@@ -833,7 +833,7 @@ public class NowPlayingFragment extends Fragment implements View.OnCreateContext
 
     /**
      * Sets the state of assorted option menu items based on whether or not there is a connection to
-     * the server, and if so, whether any players are connected.
+     * the server, and if so, whether any players are connected
      */
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
@@ -869,6 +869,10 @@ public class NowPlayingFragment extends Fragment implements View.OnCreateContext
         // Don't show the item to go to alarms if in AlarmsActivity.
         if (mActivity instanceof AlarmsActivity && menu_item_alarm != null) {
             menu_item_alarm.setVisible(false);
+        }
+
+        if (mActivity instanceof PlayerListActivity && menu_item_players != null) {
+            menu_item_players.setVisible(false);
         }
 
         updatePowerMenuItems(canPowerOn(), canPowerOff());

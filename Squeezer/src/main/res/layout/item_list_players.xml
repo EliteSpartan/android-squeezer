@@ -84,6 +84,6 @@
     <fragment android:name="uk.org.ngo.squeezer.NowPlayingFragment"
         android:id="@+id/now_playing_fragment"
         android:layout_width="fill_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         tools:layout="@layout/now_playing_fragment_mini"/>
 </LinearLayout>

@@ -45,7 +45,7 @@ for the implementation.
     android:minHeight="48dp"
     android:paddingBottom="4dp"
     android:paddingLeft="16dp"
-    android:paddingRight="32dp"
+    android:paddingRight="16dp"
     android:paddingTop="4dp">
 
     <uk.org.ngo.squeezer.widget.SquareImageView
@@ -84,12 +84,15 @@ for the implementation.
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_toLeftOf="@+id/context_menu"
+        android:layout_marginStart="-8dp"
+        android:layout_marginEnd="7dp"
         android:max="100"
         android:thumbOffset="8dp"
         tools:visibility="visible"
-        android:layout_below="@+id/icon"
-        android:layout_alignLeft="@+id/icon" />
+        android:layout_below="@+id/icon" />
+
+    <!--android:layout_toLeftOf="@+id/context_menu"
+    android:layout_alignLeft="@+id/icon"-->
 
     <include
         android:id="@+id/context_menu"
@@ -97,5 +100,5 @@ for the implementation.
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentTop="true" />
 </RelativeLayout>

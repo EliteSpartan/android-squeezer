@@ -4,6 +4,10 @@
     <dimen name="album_art_icon_width">48dp</dimen>
     <dimen name="album_art_icon_height">48dp</dimen>
 
+    <!-- Album Art Icon in 'Now Playing Mini' -->
+    <dimen name="album_art_icon_large_width">64dp</dimen>
+    <dimen name="album_art_icon_large_height">64dp</dimen>
+
     <!-- Icons in list headers. -->
     <dimen name="album_art_large_icon_width">96dp</dimen>
     <dimen name="album_art_large_icon_height">96dp</dimen>

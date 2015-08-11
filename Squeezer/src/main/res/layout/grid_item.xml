@@ -65,6 +65,7 @@ for the implementation.
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/icon"
+        android:layout_toLeftOf="@id/context_menu"
         android:ellipsize="end"
         android:paddingTop="4dp"
         android:singleLine="true"

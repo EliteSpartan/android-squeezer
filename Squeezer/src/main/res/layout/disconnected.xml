@@ -39,11 +39,11 @@
             android:text="@string/menu_item_connect"/>
     </RelativeLayout>
 
-    <fragment
+    <!--<fragment
         android:id="@+id/now_playing_fragment"
         android:name="uk.org.ngo.squeezer.NowPlayingFragment"
         android:layout_width="fill_parent"
         android:layout_height="48dp"
         android:layout_alignParentBottom="true"
-        tools:layout="@layout/now_playing_fragment_mini"/>
+        tools:layout="@layout/now_playing_fragment_mini"/>-->
 </RelativeLayout>

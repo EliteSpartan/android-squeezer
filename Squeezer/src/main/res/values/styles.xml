@@ -48,6 +48,9 @@
         <item name="ic_delete">@drawable/ic_delete</item>
 
         <item name="floatLabelColor">@color/float_label_dark</item>
+
+        <item name="colorPrimaryDark">#01579b</item>
+        <item name="colorPrimary">#0277bd</item>
     </style>
 
     <style name="AppTheme.Light.DarkActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -205,7 +208,7 @@
         <item name="android:layout_width">0dip</item>
         <item name="android:layout_height">52dip</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:background">@drawable/list_selector_holo_dark</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
     </style>
 
     <style name="SqueezerWidget.MediaButton.Previous">

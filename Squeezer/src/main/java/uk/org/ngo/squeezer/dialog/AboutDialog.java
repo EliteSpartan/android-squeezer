@@ -49,7 +49,7 @@ public class AboutDialog extends DialogFragment {
         try {
             info = pm.getPackageInfo(getActivity().getPackageName(), 0);
             if (BuildConfig.DEBUG) {
-                versionText.setText(info.versionName + ' ' + BuildConfig.GIT_DESCRIPTION);
+                //versionText.setText(info.versionName + ' ' + BuildConfig.GIT_DESCRIPTION);
             } else {
                 versionText.setText(info.versionName);
             }

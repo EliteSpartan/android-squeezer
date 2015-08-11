@@ -32,20 +32,21 @@
 
     <uk.org.ngo.squeezer.widget.SquareImageView
         android:id="@+id/album"
-        android:layout_width="@dimen/album_art_icon_width"
-        android:layout_height="@dimen/album_art_icon_height"
+        android:layout_width="@dimen/album_art_icon_large_width"
+        android:layout_height="@dimen/album_art_icon_large_height"
         android:layout_below="@id/progressbar"
-        android:maxHeight="@dimen/album_art_icon_height"
-        android:maxWidth="@dimen/album_art_icon_width"
-        android:minHeight="@dimen/album_art_icon_height"
-        android:minWidth="@dimen/album_art_icon_width"/>
+        android:maxHeight="@dimen/album_art_icon_large_height"
+        android:maxWidth="@dimen/album_art_icon_large_width"
+        android:minHeight="@dimen/album_art_icon_large_height"
+        android:minWidth="@dimen/album_art_icon_large_width"/>
 
     <TextView
         android:id="@+id/trackname"
         android:layout_below="@id/progressbar"
         android:layout_toLeftOf="@id/pause"
         android:layout_toRightOf="@id/album"
-        android:paddingLeft="4dp"
+        android:paddingTop="4dp"
+        android:paddingLeft="8dp"
         style="@style/SqueezerWidget.NowPlayingMini.SongName"/>
 
     <TextView
@@ -53,12 +54,12 @@
         android:layout_below="@id/trackname"
         android:layout_toLeftOf="@id/pause"
         android:layout_toRightOf="@id/album"
-        android:paddingLeft="4dp"
+        android:paddingLeft="8dp"
         style="@style/SqueezerWidget.NowPlayingMini.AlbumName"/>
 
     <ImageButton
         android:id="@+id/pause"
-        android:layout_width="48dp"
+        android:layout_width="64dp"
         android:layout_height="fill_parent"
         android:layout_alignParentRight="true"
         android:layout_below="@id/progressbar"
