@@ -23,6 +23,7 @@ New and Improved Features
 
 *   Material Design
 *   Re designed the Login and Now Playing Screen
+*   Beginnings of a proper Tablet Layout
 *   Material Dark theme (still needs work)
 
 Planned Features
@@ -30,4 +31,5 @@ Planned Features
 
 *   Re designed home screen, for better access to all types of music (tab or drawer layout).
 *   Material Light theme (very buggy, hard to use)
+*   Better Tablet Layout
 *   More Coming soon!
