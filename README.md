@@ -23,3 +23,16 @@ Features include:
 Squeezer is free, and open source.  For more information, to file a feature request,
 or to contribute, see the
 [project home page](https://nikclayton.github.io/android-squeezer/).
+
+New and Improved Features
+=========================
+
+*   Material Design
+*   Re designed the Login and Now Playing Screen
+*   Material Dark theme (still needs work)
+
+Planned Features
+================
+
+*   Re designed home screen, for better access to all types of music (tab or drawer layout).
+*   More Coming soon!
