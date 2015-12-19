@@ -31,7 +31,7 @@
         android:title="@string/menu_item_playlist"
         android:alphabeticShortcut="p"
         android:icon="@drawable/ic_menu_playlist"
-        squeezer:showAsAction="never"
+        squeezer:showAsAction="ifRoom"
         android:orderInCategory="0"/>
 
     <item
@@ -46,7 +46,7 @@
         android:title="Alarm Clock"
         android:alphabeticShortcut="z"
         android:icon="@android:drawable/ic_lock_idle_alarm"
-        squeezer:showAsAction="ifRoom"/>
+        squeezer:showAsAction="never"/>
 
     <item
         android:id="@+id/menu_item_poweron"

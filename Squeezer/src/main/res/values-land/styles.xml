@@ -18,7 +18,7 @@
 <resources>
     <!-- Text on the NowPlayingFragment. -->
     <!-- Primary and secondary text is one size larger. -->
-    <style name="SqueezerTextAppearance.NowPlaying.Primary" parent="SqueezerTextAppearance.Large"/>
+    <style name="SqueezerTextAppearance.NowPlaying.Primary" parent="SqueezerTextAppearance.Large.2"/>
     <style name="SqueezerTextAppearance.NowPlaying.Secondary" parent="SqueezerTextAppearance.Medium"/>
 
 </resources>

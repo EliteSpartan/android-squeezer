@@ -223,7 +223,8 @@ public class NowPlayingFragment extends Fragment implements View.OnCreateContext
                 "http://schemas.android.com/apk/res/android",
                 "layout_height", 0);
 
-        mFullHeightLayout = (layout_height == ViewGroup.LayoutParams.FILL_PARENT);
+        mFullHeightLayout = (layout_height == ViewGroup.LayoutParams.FILL_PARENT ||
+                layout_height == ViewGroup.LayoutParams.MATCH_PARENT);
     }
 
     @Override
@@ -247,7 +248,7 @@ public class NowPlayingFragment extends Fragment implements View.OnCreateContext
             Bundle savedInstanceState) {
         View v;
 
-        if (mFullHeightLayout) {
+        if (mActivity instanceof NowPlayingActivity) {
             v = inflater.inflate(R.layout.now_playing_fragment_full, container, false);
 
             artistText = (TextView) v.findViewById(R.id.artistname);
@@ -267,10 +268,12 @@ public class NowPlayingFragment extends Fragment implements View.OnCreateContext
                     v.showContextMenu();
                 }
             });
+            mFullHeightLayout = true;
         } else {
             v = inflater.inflate(R.layout.now_playing_fragment_mini, container, false);
 
             mProgressBar = (ProgressBar) v.findViewById(R.id.progressbar);
+            mFullHeightLayout = false;
         }
 
         albumArt = (ImageView) v.findViewById(R.id.album);
@@ -882,7 +885,9 @@ public class NowPlayingFragment extends Fragment implements View.OnCreateContext
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_item_settings:
-                SettingsActivity.show(mActivity);
+                Intent intent;
+                intent = new Intent(getActivity(), SettingsActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.menu_item_search:
                 mActivity.onSearchRequested();

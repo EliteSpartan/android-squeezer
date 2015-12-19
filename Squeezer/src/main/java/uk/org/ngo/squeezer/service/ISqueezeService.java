@@ -52,7 +52,7 @@ public interface ISqueezeService {
     boolean isConnected();
     boolean isConnectInProgress();
 
-    // For the SettingsActivity to notify the Service that a setting changed.
+    // For the SettingsFragment to notify the Service that a setting changed.
     void preferenceChanged(String key);
 
     // Call this to change the player we are controlling

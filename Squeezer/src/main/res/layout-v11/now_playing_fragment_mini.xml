@@ -21,24 +21,24 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
+    <uk.org.ngo.squeezer.widget.SquareImageView
+        android:id="@+id/album"
+        android:layout_width="@dimen/album_art_icon_large_width"
+        android:layout_height="@dimen/album_art_icon_large_height"
+        android:maxHeight="@dimen/album_art_icon_large_height"
+        android:maxWidth="@dimen/album_art_icon_large_width"
+        android:minHeight="@dimen/album_art_icon_large_height"
+        android:minWidth="@dimen/album_art_icon_large_width"/>
+
     <ProgressBar
         android:id="@+id/progressbar"
+        android:layout_toRightOf="@id/album"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_alignParentTop="true"
         android:maxHeight="2dp"
         android:progressDrawable="@drawable/thin_progress_bar"/>
-
-    <uk.org.ngo.squeezer.widget.SquareImageView
-        android:id="@+id/album"
-        android:layout_width="@dimen/album_art_icon_large_width"
-        android:layout_height="@dimen/album_art_icon_large_height"
-        android:layout_below="@id/progressbar"
-        android:maxHeight="@dimen/album_art_icon_large_height"
-        android:maxWidth="@dimen/album_art_icon_large_width"
-        android:minHeight="@dimen/album_art_icon_large_height"
-        android:minWidth="@dimen/album_art_icon_large_width"/>
 
     <TextView
         android:id="@+id/trackname"

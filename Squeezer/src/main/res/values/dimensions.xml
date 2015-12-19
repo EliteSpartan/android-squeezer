@@ -23,4 +23,10 @@
     <!-- Icons in expanded notification -->
     <dimen name="album_art_icon_expanded_notification_width">128dp</dimen>
     <dimen name="album_art_icon_expanded_notification_height">128dp</dimen>
+
+    <!-- Toolbar styles + Keylines -->
+    <dimen name="first_keyline">16dp</dimen>
+    <dimen name="second_keyline">72dp</dimen>
+    <dimen name="toolbar_horizontal_padding">4dp</dimen>
+
 </resources>

@@ -22,6 +22,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -127,9 +128,13 @@ public class SongListActivity extends BaseListActivity<Song>
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        setListLayout();
         super.onCreate(savedInstanceState);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setListLayout();
         // Set the album header.
         if (album != null) {
             ImageView artwork = (ImageView) findViewById(R.id.album);

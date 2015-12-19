@@ -169,7 +169,7 @@ public abstract class ImageWorker {
         if (bitmap != null) {
             // Bitmap found in memory cache
             if (BuildConfig.DEBUG) {
-                addDebugSwatch(new Canvas(bitmap), mCacheDebugColorMemory);
+                //addDebugSwatch(new Canvas(bitmap), mCacheDebugColorMemory);
             }
             imageView.setImageBitmap(bitmap);
         } else if (cancelPotentialWork(data, imageView)) {
@@ -219,7 +219,7 @@ public abstract class ImageWorker {
         if (bitmap != null) {
             // Bitmap found in memory cache
             if (BuildConfig.DEBUG) {
-                addDebugSwatch(new Canvas(bitmap), mCacheDebugColorMemory);
+                //addDebugSwatch(new Canvas(bitmap), mCacheDebugColorMemory);
             }
             callback.process(data, bitmap);
         } else {
@@ -256,7 +256,7 @@ public abstract class ImageWorker {
         if (bitmap != null) {
             // Bitmap found in memory cache
             if (BuildConfig.DEBUG) {
-                addDebugSwatch(new Canvas(bitmap), mCacheDebugColorMemory);
+                //addDebugSwatch(new Canvas(bitmap), mCacheDebugColorMemory);
             }
             remoteViews.setImageViewBitmap(viewId, bitmap);
             nm.notify(notificationId, notification);
@@ -312,8 +312,10 @@ public abstract class ImageWorker {
      *
      * @param canvas The canvas to draw on.
      * @param color The colour to use for the swatch.
+     *
+     *              EVIL STUFF BELOW!!!
      */
-    public static void addDebugSwatch(Canvas canvas, int color) {
+    /**public static void addDebugSwatch(Canvas canvas, int color) {
         float width = canvas.getWidth();
         float height = canvas.getHeight();
 
@@ -332,7 +334,7 @@ public abstract class ImageWorker {
         mCacheDebugPaint.setStyle(Paint.Style.STROKE);
         mCacheDebugPaint.setStrokeWidth(0);
         canvas.drawPath(path, mCacheDebugPaint);
-    }
+    }**/
 
     /**
      * Adds an {@link ImageCache} to this worker in the background, to prevent disk access on
@@ -580,9 +582,9 @@ public abstract class ImageWorker {
 
             if (BuildConfig.DEBUG && scaledBitmap != null) {
                 if (loadedFromNetwork) {
-                    addDebugSwatch(new Canvas(scaledBitmap), mCacheDebugColorNetwork);
+                    //addDebugSwatch(new Canvas(scaledBitmap), mCacheDebugColorNetwork);
                 } else {
-                    addDebugSwatch(new Canvas(scaledBitmap), mCacheDebugColorDisk);
+                    //addDebugSwatch(new Canvas(scaledBitmap), mCacheDebugColorDisk);
                 }
 
             }

@@ -44,27 +44,31 @@ for the implementation.
     android:descendantFocusability="blocksDescendants"
     android:minHeight="48dp"
     android:paddingBottom="4dp"
-    android:paddingLeft="16dp"
+    android:paddingLeft="24dp"
     android:paddingRight="16dp"
     android:paddingTop="4dp">
 
     <uk.org.ngo.squeezer.widget.SquareImageView
         android:id="@+id/icon"
-        android:layout_width="@dimen/album_art_icon_width"
-        android:layout_height="@dimen/album_art_icon_height"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginRight="8dp"
         android:contentDescription="@string/app_name"
         android:maxHeight="@dimen/album_art_icon_height"
         android:maxWidth="@dimen/album_art_icon_width"
         android:minHeight="@dimen/album_art_icon_height"
         android:minWidth="@dimen/album_art_icon_width"
+        android:visibility="gone"
         tools:src="@drawable/ic_transporter" />
+
+    <!-- @dimen/album_art_icon_width -->
 
     <TextView
         android:id="@+id/text1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/icon"
+        android:layout_marginTop="10dp"
         android:textAppearance="@style/SqueezerTextAppearance.GridItem.Primary"
         tools:text="Player name" />
 
@@ -89,7 +93,7 @@ for the implementation.
         android:max="100"
         android:thumbOffset="8dp"
         tools:visibility="visible"
-        android:layout_below="@+id/icon" />
+        android:layout_below="@+id/text1" />
 
     <!--android:layout_toLeftOf="@+id/context_menu"
     android:layout_alignLeft="@+id/icon"-->
@@ -97,8 +101,8 @@ for the implementation.
     <include
         android:id="@+id/context_menu"
         layout="@layout/context_menu_image_button"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true" />
 </RelativeLayout>

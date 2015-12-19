@@ -95,6 +95,8 @@
         android:layout_above="@+id/now_playing_fragment"
         android:layout_below="@+id/app_bar"
         android:groupIndicator="@null"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp"
         android:fastScrollEnabled="true"/>
 
     <ProgressBar

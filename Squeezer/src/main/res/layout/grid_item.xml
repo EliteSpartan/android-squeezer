@@ -37,57 +37,79 @@ for the implementation.
 
 -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:descendantFocusability="blocksDescendants"
     android:orientation="vertical"
-    android:paddingBottom="8dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="8dp">
+    android:background="@null">
 
-    <uk.org.ngo.squeezer.widget.SquareImageView
-        android:id="@+id/icon"
-        android:layout_width="@dimen/album_art_icon_grid_width"
-        android:layout_height="@dimen/album_art_icon_grid_height"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:contentDescription="@string/app_name"
-        android:maxHeight="@dimen/album_art_icon_grid_height"
-        android:maxWidth="@dimen/album_art_icon_grid_width"
-        android:minHeight="@dimen/album_art_icon_grid_height"
-        android:minWidth="@dimen/album_art_icon_grid_width"/>
+    <android.support.v7.widget.CardView
+        app:cardCornerRadius="2dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardElevation="2dp"
+        app:cardBackgroundColor="?attr/colorPrimaryDark"
+        android:layout_margin="6dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/text1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/icon"
-        android:layout_toLeftOf="@id/context_menu"
-        android:ellipsize="end"
-        android:paddingTop="4dp"
-        android:singleLine="true"
-        android:textAppearance="@style/SqueezerTextAppearance.GridItem.Primary"
-        tools:text="Album name"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/text2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/text1"
-        android:layout_toLeftOf="@id/context_menu"
-        android:ellipsize="end"
-        android:singleLine="true"
-        android:textAppearance="@style/SqueezerTextAppearance.GridItem.Secondary"
-        tools:text="Artist info"/>
+            <uk.org.ngo.squeezer.widget.SquareImageView
+                android:id="@+id/icon"
+                android:layout_width="256dp"
+                android:layout_height="256dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:contentDescription="@string/app_name"
+                android:minHeight="@dimen/album_art_icon_grid_height"
+                android:minWidth="@dimen/album_art_icon_grid_width"/>
 
-    <include
-        layout="@layout/context_menu_image_button"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:minWidth="36dp"/>
-</RelativeLayout>
+            <RelativeLayout
+                android:layout_below="@id/icon"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/text1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@id/context_menu"
+                    android:ellipsize="end"
+                    android:paddingTop="4dp"
+                    android:singleLine="true"
+                    android:textAppearance="@style/SqueezerTextAppearance.GridItem.Primary"
+                    tools:text="Album name"/>
+
+                <TextView
+                    android:id="@+id/text2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/text1"
+                    android:layout_toLeftOf="@id/context_menu"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textAppearance="@style/SqueezerTextAppearance.GridItem.Secondary"
+                    tools:text="Artist info"/>
+
+                <include
+                    layout="@layout/context_menu_image_button"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:minWidth="36dp"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

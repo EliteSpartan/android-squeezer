@@ -49,11 +49,38 @@
 
         <item name="floatLabelColor">@color/float_label_dark</item>
 
-        <item name="colorPrimaryDark">#01579b</item>
-        <item name="colorPrimary">#0277bd</item>
+        <item name="colorPrimaryDark">#212121</item>
+        <item name="colorPrimary">#323232</item>
+        <item name="colorAccent">#b71c1c</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <item name="toolbarStyle">@style/AppTheme.ToolbarStyle.Dark</item>
+        <item name="toolbarNavigationButtonStyle">@style/AppTheme.ToolbarStyle.Button.Navigation</item>
+        <item name="actionOverflowButtonStyle">@style/AppTheme.ActionButton.Overflow</item>
+
+
+
     </style>
 
-    <style name="AppTheme.Light.DarkActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme.Drawer" parent="AppTheme">
+
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+
+    </style>
+
+    <style name="AppTheme.Settings" parent="AppTheme">
+
+        <item name="windowActionBar">false</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+    </style>
+
+    <style name="AppTheme.Light" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="ic_action_av_connect">@drawable/presence_online</item>
         <item name="ic_action_av_next">@drawable/ic_action_av_next_holo_light</item>
         <item name="ic_action_av_pause">@drawable/ic_action_av_pause_holo_light</item>
@@ -83,6 +110,22 @@
         <item name="ic_delete">@drawable/ic_delete_light</item>
 
         <item name="floatLabelColor">@color/float_label_light</item>
+
+        <item name="android:windowBackground">@color/windowBackgroundLight</item>
+        <item name="android:colorBackground">@android:color/background_light</item>
+
+        <item name="colorPrimaryDark">#212121</item>
+        <item name="colorPrimary">#323232</item>
+        <item name="colorAccent">#b71c1c</item>
+
+        <item name="toolbarStyle">@style/AppTheme.ToolbarStyle.Dark</item>
+        <item name="toolbarNavigationButtonStyle">@style/AppTheme.ToolbarStyle.Button.Navigation</item>
+        <item name="actionOverflowButtonStyle">@style/AppTheme.ActionButton.Overflow</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
     </style>
 
     <!-- Text Styles. Apply these to the android:textAppearance attribute of the views. -->
@@ -90,6 +133,9 @@
     <!-- Base styles that the rest of the app inherits from. -->
     <style name="SqueezerTextAppearance.XLarge" parent="@android:style/TextAppearance.Large">
         <item name="android:textSize">44sp</item>
+    </style>
+    <style name="SqueezerTextAppearance.Large.2" parent="@android:style/TextAppearance.Large">
+        <item name="android:textSize">28sp</item>
     </style>
     <style name="SqueezerTextAppearance.Large" parent="@android:style/TextAppearance.Large"/>
     <style name="SqueezerTextAppearance.Medium" parent="@android:style/TextAppearance.Medium"/>
@@ -206,29 +252,34 @@
     <!-- Media controller styles -->
     <style name="SqueezerWidget.MediaButton">
         <item name="android:layout_width">0dip</item>
-        <item name="android:layout_height">52dip</item>
+        <item name="android:layout_height">40dip</item>
         <item name="android:layout_weight">1</item>
         <item name="android:background">?android:attr/selectableItemBackground</item>
     </style>
 
     <style name="SqueezerWidget.MediaButton.Previous">
         <item name="android:src">?attr/ic_action_av_previous</item>
+        <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
     </style>
 
     <style name="SqueezerWidget.MediaButton.Next">
         <item name="android:src">?attr/ic_action_av_next</item>
+        <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
     </style>
 
     <style name="SqueezerWidget.MediaButton.Play">
         <item name="android:src">?attr/ic_action_av_play</item>
+        <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
     </style>
 
     <style name="SqueezerWidget.MediaButton.Shuffle">
         <item name="android:src">?attr/ic_action_av_shuffle_off</item>
+        <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
     </style>
 
     <style name="SqueezerWidget.MediaButton.Repeat">
         <item name="android:src">?attr/ic_action_av_repeat_off</item>
+        <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
     </style>
 
     <style name="VolumePanel" parent="@android:style/Theme.Panel">
@@ -280,4 +331,41 @@
         <item name="android:textColor">#fff</item>
         <item name="android:text">@string/undo</item>
     </style>
+
+    <!-- Set up the toolbar properly -->
+    <style name="AppTheme.ToolbarStyle.Dark" parent="Widget.AppCompat.Toolbar">
+
+        <item name="maxButtonHeight">48dp</item>
+        <item name="android:paddingLeft">@dimen/toolbar_horizontal_padding</item>
+        <item name="android:paddingRight">@dimen/toolbar_horizontal_padding</item>
+        <item name="contentInsetStart">@dimen/first_keyline</item>
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+
+    </style>
+
+    <style name="AppTheme.ToolbarStyle.Light" parent="Widget.AppCompat.Toolbar">
+
+        <item name="maxButtonHeight">48dp</item>
+        <item name="android:paddingLeft">@dimen/toolbar_horizontal_padding</item>
+        <item name="android:paddingRight">@dimen/toolbar_horizontal_padding</item>
+        <item name="contentInsetStart">@dimen/first_keyline</item>
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+
+    </style>
+
+    <!-- Navigation Button Style -->
+    <style name="AppTheme.ToolbarStyle.Button.Navigation" parent="Widget.AppCompat.Toolbar.Button.Navigation">
+
+        <item name="android:minWidth">48dp</item>
+
+    </style>
+
+    <!-- Overflow button style -->
+    <style name="AppTheme.ActionButton.Overflow" parent="Widget.AppCompat.ActionButton.Overflow">
+
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+
+    </style>
+
 </resources>

@@ -17,20 +17,40 @@
 -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:paddingLeft="8dp">
+    android:paddingLeft="0dp">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:clipToPadding="false">
+
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/ThemeOverlay.AppCompat"
+            app:contentInsetStart="@dimen/second_keyline"
+            android:id="@+id/toolbar" />
+
+    </android.support.design.widget.AppBarLayout>
 
     <uk.org.ngo.squeezer.widget.SquareImageView
         android:id="@+id/album"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentTop="false"
+        android:layout_below="@+id/app_bar"
         android:cropToPadding="false"
         android:paddingBottom="4dp"
-        android:paddingRight="8dp"
-        android:paddingTop="8dp"
+        android:paddingRight="0dp"
+        android:paddingTop="0dp"
         android:scaleType="fitCenter"/>
 
     <!-- The trackname TextView needs to be wrapped in a LinearLayout.
@@ -61,11 +81,12 @@
         android:layout_toLeftOf="@id/context_menu"
         android:gravity="left|top"
         android:paddingTop="4dp"
+        android:visibility="gone"
         style="@style/SqueezerWidget.NowPlaying.AlbumName"/>
 
     <TextView
         android:id="@+id/artistname"
-        android:layout_below="@id/albumname"
+        android:layout_below="@+id/track_wrapper"
         android:layout_toLeftOf="@id/context_menu"
         android:gravity="left|top"
         android:paddingTop="4dp"
@@ -83,31 +104,33 @@
         android:minWidth="48dp"
         android:src="@drawable/dropdown_ic_arrow_normal_holo_dark"/>
 
-    <TextView
-        android:id="@+id/currenttime"
-        android:layout_above="@+id/media_buttons"
-        android:layout_alignBottom="@+id/seekbar"
-        android:layout_alignParentLeft="true"
-        android:layout_alignTop="@+id/seekbar"
-        android:layout_below="@id/artistname"
-        style="@style/SqueezerWidget.NowPlaying.Timestamp"/>
+    <ImageButton
+        android:id="@+id/shuffle"
+        android:layout_toLeftOf="@+id/context_menu"
+        style="@style/SqueezerWidget.MediaButton.Shuffle"/>
+
+    <ImageButton
+        android:id="@+id/repeat"
+        android:layout_toLeftOf="@+id/shuffle"
+        style="@style/SqueezerWidget.MediaButton.Repeat"/>
 
     <SeekBar
         android:id="@+id/seekbar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dip"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/artistname"
-        android:layout_toLeftOf="@+id/totaltime"
-        android:layout_toRightOf="@+id/currenttime"/>
+        android:layout_below="@id/artistname"/>
+
+    <TextView
+        android:id="@+id/currenttime"
+        android:layout_below="@+id/seekbar"
+        android:layout_alignParentLeft="true"
+        style="@style/SqueezerWidget.NowPlaying.Timestamp"/>
 
     <TextView
         android:id="@+id/totaltime"
-        android:layout_above="@id/media_buttons"
-        android:layout_alignBottom="@id/seekbar"
         android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/seekbar"
-        android:layout_below="@id/context_menu"
+        android:layout_below="@+id/seekbar"
         android:paddingRight="8dp"
         style="@style/SqueezerWidget.NowPlaying.Timestamp"/>
 
@@ -116,15 +139,12 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_below="@id/seekbar"
+        android:layout_below="@id/currenttime"
         android:gravity="center"
+        android:background="#22FFFFFF"
         android:orientation="horizontal"
         android:paddingBottom="4dp"
         android:paddingRight="8dp">
-
-        <ImageButton
-            android:id="@+id/shuffle"
-            style="@style/SqueezerWidget.MediaButton.Shuffle"/>
 
         <uk.org.ngo.squeezer.widget.RepeatingImageButton
             android:id="@+id/prev"
@@ -137,10 +157,6 @@
         <uk.org.ngo.squeezer.widget.RepeatingImageButton
             android:id="@+id/next"
             style="@style/SqueezerWidget.MediaButton.Next"/>
-
-        <ImageButton
-            android:id="@+id/repeat"
-            style="@style/SqueezerWidget.MediaButton.Repeat"/>
     </LinearLayout>
 </RelativeLayout>
 

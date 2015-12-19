@@ -547,17 +547,18 @@ public class SqueezeService extends Service implements ServiceCallbackList.Servi
             mMediaSession.setMetadata(metaBuilder.build());
 
             // Don't set an ongoing notification, otherwise wearable's won't show it.
-            builder.setOngoing(false);
 
             builder.setDeleteIntent(closePendingIntent);
             if (playing) {
                 builder.addAction(new Notification.Action(R.drawable.ic_action_previous, "Previous", prevPendingIntent))
                         .addAction(new Notification.Action(R.drawable.ic_action_pause, "Pause", pausePendingIntent))
                         .addAction(new Notification.Action(R.drawable.ic_action_next, "Next", nextPendingIntent));
+                builder.setOngoing(true);
             } else {
                 builder.addAction(new Notification.Action(R.drawable.ic_action_previous, "Previous", prevPendingIntent))
                         .addAction(new Notification.Action(R.drawable.ic_action_play, "Play", playPendingIntent))
                         .addAction(new Notification.Action(R.drawable.ic_action_next, "Next", nextPendingIntent));
+                builder.setOngoing(false);
             }
 
             ImageFetcher.getInstance(this).loadImage(url,

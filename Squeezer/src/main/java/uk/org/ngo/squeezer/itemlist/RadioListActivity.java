@@ -48,12 +48,12 @@ public class RadioListActivity extends BaseListActivity<Plugin> {
     public static void show(Activity activity) {
         final Intent intent = new Intent(activity, RadioListActivity.class);
         activity.startActivity(intent);
-        activity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        //activity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        //overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
 }

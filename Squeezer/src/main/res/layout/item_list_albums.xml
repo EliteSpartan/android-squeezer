@@ -16,13 +16,34 @@
  limitations under the License.
 -->
 
-<!-- Show all the songs on a given album. -->
+<!-- Show all the albums. -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        app:elevation="8dp"
+        android:elevation="8dp"
+        android:layout_alignParentTop="true" >
+
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/ThemeOverlay.AppCompat"
+            app:contentInsetStart="@dimen/second_keyline"
+            android:id="@+id/toolbar" />
+
+    </android.support.design.widget.AppBarLayout>
 
     <TextView
         android:id="@+id/header"
@@ -41,9 +62,11 @@
 
     <ListView
         android:id="@+id/item_list"
+        android:background="?attr/colorPrimary"
         android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/app_bar"
+        android:layout_above="@+id/playing"
         android:fastScrollEnabled="true"/>
 
     <ProgressBar
@@ -53,10 +76,20 @@
         android:layout_gravity="center"
         android:visibility="gone"/>
 
-    <fragment
-        android:id="@+id/now_playing_fragment"
-        android:name="uk.org.ngo.squeezer.NowPlayingFragment"
-        android:layout_width="fill_parent"
-        android:layout_height="60dp"
-        tools:layout="@layout/now_playing_fragment_mini"/>
-</LinearLayout>
+    <RelativeLayout
+        android:id="@+id/playing"
+        android:background="?attr/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <fragment
+            android:id="@+id/now_playing_fragment"
+            android:name="uk.org.ngo.squeezer.NowPlayingFragment"
+            android:layout_alignParentBottom="true"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            tools:layout="@layout/now_playing_fragment_mini"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

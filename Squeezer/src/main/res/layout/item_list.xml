@@ -16,76 +16,119 @@
  limitations under the License.
 -->
 
-<LinearLayout
+<android.support.v4.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:fitsSystemWindows="true"
+    android:id="@+id/drawer_layout"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/header"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:marqueeRepeatLimit="marquee_forever"
-        android:minHeight="48dp"
-        android:paddingBottom="4dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingTop="4dp"
-        android:textAppearance="@style/SqueezerTextAppearance.Medium"
-        android:visibility="gone"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/main"
+        android:fitsSystemWindows="true"
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/search_view"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:orientation="horizontal">
-
-        <uk.org.ngo.squeezer.widget.FloatLabelLayout
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:floatLabelTextAppearance="@style/SqueezerTextAppearance.FloatLabel"
-            app:floatLabelTrigger="focus">
+            android:clipToPadding="false"
+            app:elevation="8dp"
+            android:layout_alignParentTop="true" >
 
-            <EditText
-                android:id="@+id/search_input"
-                android:hint="@string/search_text_hint"
-                android:inputType="textNoSuggestions"
-                android:layout_width="0dp"
+            <android.support.v7.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:popupTheme="@style/ThemeOverlay.AppCompat"
+                app:contentInsetStart="@dimen/second_keyline"
+                android:id="@+id/toolbar" />
+
+        </android.support.design.widget.AppBarLayout>
+
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:minHeight="48dp"
+            android:paddingBottom="4dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="4dp"
+            android:textAppearance="@style/SqueezerTextAppearance.Medium"
+            android:visibility="gone"/>
+
+        <LinearLayout
+            android:id="@+id/search_view"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="horizontal">
+
+            <uk.org.ngo.squeezer.widget.FloatLabelLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
-        </uk.org.ngo.squeezer.widget.FloatLabelLayout>
+                android:layout_marginTop="16dp"
+                app:floatLabelTextAppearance="@style/SqueezerTextAppearance.FloatLabel"
+                app:floatLabelTrigger="focus">
 
-        <ImageButton
-            android:id="@+id/search_button"
-            android:src="@drawable/icon_search"
+                <EditText
+                    android:id="@+id/search_input"
+                    android:hint="@string/search_text_hint"
+                    android:inputType="textNoSuggestions"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+            </uk.org.ngo.squeezer.widget.FloatLabelLayout>
+
+            <ImageButton
+                android:id="@+id/search_button"
+                android:src="@drawable/icon_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <ListView android:id="@+id/item_list"
+            android:scrollbarStyle="outsideInset"
+            android:background="?attr/colorPrimary"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/now_playing_fragment"
+            android:layout_below="@+id/app_bar"
+            android:fastScrollEnabled="true"
+            android:fastScrollAlwaysVisible="false" />
+
+        <ProgressBar
+            android:id="@+id/loading_progress"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:visibility="gone"/>
 
-    <ListView android:id="@+id/item_list"
-        android:layout_width="fill_parent"
-        android:layout_height="0dip"
-        android:fastScrollEnabled="true"
-        android:fastScrollAlwaysVisible="false"
-        android:layout_weight="1"/>
+        <fragment android:name="uk.org.ngo.squeezer.NowPlayingFragment"
+            android:id="@+id/now_playing_fragment"
+            android:layout_alignParentBottom="true"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            tools:layout="@layout/now_playing_fragment_mini"/>
 
-    <ProgressBar
-        android:id="@+id/loading_progress"
+    </RelativeLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/navigation_view"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:layout_gravity="center"
-        android:visibility="gone"/>
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:elevation="16dp"
+        android:fitsSystemWindows="true"
+        app:menu="@menu/drawer_items" />
 
-    <fragment android:name="uk.org.ngo.squeezer.NowPlayingFragment"
-        android:id="@+id/now_playing_fragment"
-        android:layout_width="fill_parent"
-        android:layout_height="60dp"
-        tools:layout="@layout/now_playing_fragment_mini"/>
-</LinearLayout>
+</android.support.v4.widget.DrawerLayout>

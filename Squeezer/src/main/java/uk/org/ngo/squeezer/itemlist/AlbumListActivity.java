@@ -22,6 +22,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -55,39 +56,28 @@ public class AlbumListActivity extends BaseListActivity<Album>
         ViewMenuItemFragment.ListActivityWithViewMenu<Album, AlbumViewDialog.AlbumListLayout, AlbumViewDialog.AlbumsSortOrder> {
 
     private AlbumViewDialog.AlbumsSortOrder sortOrder = null;
-
     private AlbumViewDialog.AlbumListLayout listLayout = null;
-
     private String searchString = null;
-
     public String getSearchString() {
         return searchString;
     }
-
     public void setSearchString(String searchString) {
         this.searchString = searchString;
     }
-
     private Song song;
-
     public Song getSong() {
         return song;
     }
-
     public void setSong(Song song) {
         this.song = song;
     }
-
     private Artist artist;
-
     public Artist getArtist() {
         return artist;
     }
-
     public void setArtist(Artist artist) {
         this.artist = artist;
     }
-
     private Year year;
 
     @Override
@@ -120,8 +110,14 @@ public class AlbumListActivity extends BaseListActivity<Album>
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         setListLayout();
         super.onCreate(savedInstanceState);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         BaseMenuFragment.add(this, FilterMenuFragment.class);
         BaseMenuFragment.add(this, ViewMenuItemFragment.class);
@@ -169,8 +165,7 @@ public class AlbumListActivity extends BaseListActivity<Album>
 
     @Override
     protected int getContentView() {
-        return (listLayout == AlbumViewDialog.AlbumListLayout.grid) ? R.layout.item_grid
-                : R.layout.item_list_albums;
+        return (listLayout == AlbumViewDialog.AlbumListLayout.grid) ? R.layout.item_grid : R.layout.item_list_albums;
     }
 
     @Override
@@ -224,7 +219,7 @@ public class AlbumListActivity extends BaseListActivity<Album>
             int screenSize = getResources().getConfiguration().screenLayout
                     & Configuration.SCREENLAYOUT_SIZE_MASK;
             listLayout = (screenSize >= Configuration.SCREENLAYOUT_SIZE_LARGE)
-                    ? AlbumViewDialog.AlbumListLayout.grid : AlbumViewDialog.AlbumListLayout.list;
+                     ? AlbumViewDialog.AlbumListLayout.grid : AlbumViewDialog.AlbumListLayout.list;
         } else {
             listLayout = AlbumViewDialog.AlbumListLayout.valueOf(listLayoutString);
         }
@@ -236,7 +231,6 @@ public class AlbumListActivity extends BaseListActivity<Album>
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(Preferences.KEY_ALBUM_LIST_LAYOUT, listLayout.name());
         editor.commit();
-
         startActivity(getIntent());
         finish();
     }

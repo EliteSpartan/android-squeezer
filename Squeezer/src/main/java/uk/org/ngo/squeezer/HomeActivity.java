@@ -25,11 +25,17 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 
@@ -59,39 +65,28 @@ public class HomeActivity extends BaseActivity {
     private final String TAG = "HomeActivity";
 
     private static final int ARTISTS = 0;
-
     private static final int ALBUMS = 1;
-
     private static final int SONGS = 2;
-
     private static final int GENRES = 3;
-
     private static final int YEARS = 4;
-
     private static final int NEW_MUSIC = 5;
-
     private static final int MUSIC_FOLDER = 6;
-
     private static final int RANDOM_MIX = 7;
-
     private static final int PLAYLISTS = 8;
-
     private static final int INTERNET_RADIO = 9;
-
     private static final int FAVORITES = 10;
-
     private static final int MY_APPS = 11;
 
     private boolean mCanFavorites = false;
-
     private boolean mCanMusicfolder = false;
-
     private boolean mCanMyApps = false;
-
     private boolean mCanRandomplay = false;
 
     private ListView listView;
-
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle mDrawerToggle;
+    private Toolbar toolbar;
+    private RelativeLayout relativeLayout;
     private GoogleAnalyticsTracker tracker;
 
     @Override
@@ -103,6 +98,26 @@ public class HomeActivity extends BaseActivity {
 
         setContentView(R.layout.item_list);
         listView = (ListView) findViewById(R.id.item_list);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        relativeLayout = (RelativeLayout) findViewById(R.id.main);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        mDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name){
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+            }
+        };
+        mDrawerToggle.syncState();
+        drawerLayout.setDrawerListener(mDrawerToggle);
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         final SharedPreferences preferences = getSharedPreferences(Preferences.NAME, 0);
@@ -259,6 +274,16 @@ public class HomeActivity extends BaseActivity {
                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         context.startActivity(intent);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                drawerLayout.openDrawer(GravityCompat.START);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

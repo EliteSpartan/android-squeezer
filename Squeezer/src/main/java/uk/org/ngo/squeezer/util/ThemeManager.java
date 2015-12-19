@@ -38,7 +38,7 @@ public class ThemeManager {
 
     /** Available themes. */
     public enum Theme {
-        LIGHT_DARKACTIONBAR(R.string.settings_theme_light_dark, R.style.AppTheme_Light_DarkActionBar),
+        LIGHT_DARKACTIONBAR(R.string.settings_theme_light_dark, R.style.AppTheme_Light),
         DARK(R.string.settings_theme_dark, R.style.AppTheme);
 
         public final int mLabelId;
@@ -74,7 +74,7 @@ public class ThemeManager {
     public void onResume(Activity activity) {
         // Themes can only be applied before views are instantiated.  If the current theme
         // changed while this activity was paused (e.g., because the user went to the
-        // SettingsActivity and changed it) then restart this activity with the new theme.
+        // SettingsFragment and changed it) then restart this activity with the new theme.
         if (mCurrentTheme != getThemePreference(activity)) {
             Intent intent = activity.getIntent();
             activity.finish();

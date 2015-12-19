@@ -3,15 +3,15 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
     <item android:id="@android:id/background">
         <shape>
-            <!-- Matches the progress bar background on Android 4.4. -->
+            <!-- Matches the progress bar background on Android 4.4. #ff3a3f44 -->
             <solid android:color="#ff3a3f44"/>
         </shape>
     </item>
     <item android:id="@android:id/progress">
         <clip>
             <shape>
-                <!-- #ff0099cc is android:color/holo_blue_dark. -->
-                <solid android:color="#ff0099cc"/>
+                <!-- #ff0099cc is android:color/holo_blue_dark. #ff0099cc -->
+                <solid android:color="#c62828"/>
             </shape>
         </clip>
     </item>

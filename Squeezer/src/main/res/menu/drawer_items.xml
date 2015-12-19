@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:checkableBehavior="single"
+        android:id="@+id/main">
+
+        <item
+            android:title="Artists"
+            android:id="@+id/drawer_artists"
+            android:checked="true"/>
+
+        <item
+            android:title="Albums"
+            android:id="@+id/drawer_albums"/>
+
+        <item
+            android:title="Songs"
+            android:id="@+id/drawer_songs"/>
+
+        <item
+            android:title="Genres"
+            android:id="@+id/drawer_genres"/>
+
+        <item
+            android:title="Years"
+            android:id="@+id/drawer_years"/>
+
+        <item
+            android:title="New Music"
+            android:id="@+id/drawer_new"/>
+
+        <item
+            android:title="Random Mix"
+            android:id="@+id/drawer_random"/>
+
+        <item
+            android:title="Playlists"
+            android:id="@+id/drawer_playlists"/>
+
+        <item
+            android:title="Internet Radio"
+            android:id="@+id/drawer_radio"/>
+
+        <item
+            android:title="My Apps"
+            android:id="@+id/drawer_apps"/>
+
+    </group>
+
+    <group>
+
+        <item
+            android:title="Disconnect"
+            android:id="@+id/drawer_disconnect"/>
+
+        <item
+            android:title="Settings"
+            android:id="@+id/drawer_settings"/>
+
+        <item
+            android:title="About"
+            android:id="@+id/drawer_about"/>
+
+    </group>
+
+</menu>
