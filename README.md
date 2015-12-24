@@ -30,6 +30,6 @@ Planned Features
 ================
 
 *   Re designed home screen, for better access to all types of music (tab or drawer layout).
-*   Material Light theme (very buggy, hard to use)
+*   Material Light theme (Currently very buggy, hard to use)
 *   Better Tablet Layout
 *   More Coming soon!
