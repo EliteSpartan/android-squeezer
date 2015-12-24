@@ -31,14 +31,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
-        android:layout_alignParentTop="true">
+        app:elevation="8dp"
+        android:background="?attr/colorPrimary">
 
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@android:color/transparent"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/ThemeOverlay.AppCompat"
+            app:theme="@style/AppTheme.ToolbarStyle.Dark.Buttons"
             app:contentInsetStart="@dimen/second_keyline"
             android:id="@+id/toolbar" />
 
@@ -107,21 +108,20 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="?android:attr/selectableItemBackground"
-            android:contentDescription="@string/app_name"
+            android:contentDescription="More Options"
             android:minWidth="48dp"
             android:paddingRight="0dp"
             android:src="@drawable/dropdown_ic_arrow_normal_holo_dark"
             android:layout_alignWithParentIfMissing="true"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/artistname"
-            android:layout_marginRight="16dp"/>
+            android:layout_marginRight="12dp"/>
     </RelativeLayout>
 
     <ListView
         android:layout_below="@+id/album_info"
         android:layout_above="@+id/now_playing_fragment"
         android:id="@+id/item_list"
-        android:background="?attr/colorPrimary"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:fastScrollEnabled="true"/>
@@ -131,6 +131,7 @@
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
         android:visibility="gone"/>
 
     <fragment

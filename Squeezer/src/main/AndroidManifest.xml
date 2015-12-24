@@ -73,11 +73,9 @@
             android:label="@string/app_name"
             android:parentActivityName=".HomeActivity"/>
         <activity android:name=".itemlist.PlayerListActivity"
-            android:label="@string/app_name"
-            android:parentActivityName=".HomeActivity"/>
+            android:label="@string/app_name"/>
         <activity android:name=".itemlist.AlarmsActivity"
-            android:label="@string/app_name"
-            android:parentActivityName=".HomeActivity"/>
+            android:label="@string/app_name"/>
         <activity android:name=".itemlist.ArtistListActivity"
             android:label="@string/app_name"
             android:parentActivityName=".HomeActivity"/>

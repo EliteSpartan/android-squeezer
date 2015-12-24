@@ -133,6 +133,8 @@ public abstract class BaseActivity extends AppCompatActivity implements HasUiThr
     protected void onCreate(android.os.Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        overridePendingTransition(R.anim.abc_slide_in_bottom, R.anim.abc_shrink_fade_out_from_bottom);
+
         mTheme.onCreate(this);
         ActionBar actionBar = getSupportActionBar();
 
@@ -301,19 +303,21 @@ public abstract class BaseActivity extends AppCompatActivity implements HasUiThr
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent upIntent = NavUtils.getParentActivityIntent(this);
-                if (upIntent != null) {
-                    if (NavUtils.shouldUpRecreateTask(this, upIntent)) {
-                        TaskStackBuilder.create(this)
-                                .addNextIntentWithParentStack(upIntent)
-                                .startActivities();
-                    } else {
-                        upIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        NavUtils.navigateUpTo(this, upIntent);
-                    }
-                } else {
-                    HomeActivity.show(this);
-                }
+//                Intent upIntent = NavUtils.getParentActivityIntent(this);
+//                if (upIntent != null) {
+//                    if (NavUtils.shouldUpRecreateTask(this, upIntent)) {
+//                        TaskStackBuilder.create(this)
+//                                .addNextIntentWithParentStack(upIntent)
+//                                .startActivities();
+//                    } else {
+//                        upIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//                        NavUtils.navigateUpTo(this, upIntent);
+//                    }
+//                } else {
+//                    HomeActivity.show(this);
+//                }
+                super.onBackPressed();
+                overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out);
                 return true;
             case R.id.menu_item_volume:
                 // Show the volume dialog.
@@ -331,6 +335,12 @@ public abstract class BaseActivity extends AppCompatActivity implements HasUiThr
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out);
     }
 
 

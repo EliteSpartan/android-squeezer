@@ -18,25 +18,27 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical"
-    android:paddingLeft="0dp">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:clipToPadding="false">
+        android:layout_height="256dp"
+        android:clipToPadding="false"
+        app:elevation="0dp"
+        android:background="?attr/colorPrimary">
 
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@android:color/transparent"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/ThemeOverlay.AppCompat"
+            app:theme="@style/AppTheme.ToolbarStyle.Dark.Buttons"
+            app:popupTheme="@style/Theme.AppCompat"
             app:contentInsetStart="@dimen/second_keyline"
+            style="@style/AppTheme.ToolbarStyle.Dark"
             android:id="@+id/toolbar" />
 
     </android.support.design.widget.AppBarLayout>
@@ -46,11 +48,13 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_alignParentTop="false"
-        android:layout_below="@+id/app_bar"
         android:cropToPadding="false"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="?attr/actionBarSize"
         android:paddingBottom="4dp"
-        android:paddingRight="0dp"
-        android:paddingTop="0dp"
+        android:paddingTop="16dp"
         android:scaleType="fitCenter"/>
 
     <!-- The trackname TextView needs to be wrapped in a LinearLayout.
@@ -61,10 +65,14 @@
          will not change size when then the layout is recalculated, and the text continues
          to scroll. -->
     <LinearLayout
+        android:paddingLeft="16dp"
+        android:paddingTop="0dp"
         android:id="@+id/track_wrapper"
+        android:layout_toLeftOf="@+id/icons"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/album">
+
         <TextView
             android:id="@+id/trackname"
             android:layout_width="fill_parent"
@@ -73,65 +81,84 @@
             android:paddingRight="8dp"
             android:paddingTop="2dp"
             style="@style/SqueezerWidget.NowPlaying.SongName"/>
+
     </LinearLayout>
 
+    <!-- HIDDEN -->
     <TextView
         android:id="@+id/albumname"
         android:layout_below="@id/track_wrapper"
-        android:layout_toLeftOf="@id/context_menu"
         android:gravity="left|top"
         android:paddingTop="4dp"
         android:visibility="gone"
         style="@style/SqueezerWidget.NowPlaying.AlbumName"/>
 
     <TextView
+        android:paddingLeft="16dp"
+        android:paddingBottom="8dp"
         android:id="@+id/artistname"
+        android:layout_toLeftOf="@+id/icons"
         android:layout_below="@+id/track_wrapper"
-        android:layout_toLeftOf="@id/context_menu"
         android:gravity="left|top"
         android:paddingTop="4dp"
         style="@style/SqueezerWidget.NowPlaying.ArtistName"/>
 
-    <uk.org.ngo.squeezer.widget.ListItemImageButton
-        android:id="@+id/context_menu"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_alignBottom="@+id/artistname"
+    <LinearLayout
+        android:layout_alignTop="@+id/track_wrapper"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/track_wrapper"
-        android:background="?android:attr/selectableItemBackground"
-        android:contentDescription="@string/app_name"
-        android:minWidth="48dp"
-        android:src="@drawable/dropdown_ic_arrow_normal_holo_dark"/>
+        android:layout_below="@+id/track_wrapper"
+        android:id="@+id/icons"
+        android:paddingTop="0dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp">
 
-    <ImageButton
-        android:id="@+id/shuffle"
-        android:layout_toLeftOf="@+id/context_menu"
-        style="@style/SqueezerWidget.MediaButton.Shuffle"/>
+        <ImageButton
+            android:id="@+id/shuffle"
+            android:minWidth="40dp"
+            android:layout_marginRight="4dp"
+            style="@style/SqueezerWidget.MediaButton.Shuffle"/>
 
-    <ImageButton
-        android:id="@+id/repeat"
-        android:layout_toLeftOf="@+id/shuffle"
-        style="@style/SqueezerWidget.MediaButton.Repeat"/>
+        <ImageButton
+            android:id="@+id/repeat"
+            android:minWidth="40dp"
+            android:layout_marginRight="0dp"
+            style="@style/SqueezerWidget.MediaButton.Repeat"/>
+
+        <uk.org.ngo.squeezer.widget.ListItemImageButton
+            android:id="@+id/context_menu"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:minWidth="48dp"
+            android:src="@drawable/dropdown_ic_arrow_normal_holo_dark"/>
+
+    </LinearLayout>
 
     <SeekBar
         android:id="@+id/seekbar"
         style="?android:attr/progressBarStyleHorizontal"
+        android:animateLayoutChanges="true"
+        android:layout_marginLeft="-16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="-16dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/artistname"/>
+        android:layout_below="@+id/icons"/>
 
     <TextView
         android:id="@+id/currenttime"
         android:layout_below="@+id/seekbar"
         android:layout_alignParentLeft="true"
+        android:paddingLeft="16dp"
         style="@style/SqueezerWidget.NowPlaying.Timestamp"/>
 
     <TextView
         android:id="@+id/totaltime"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/seekbar"
-        android:paddingRight="8dp"
+        android:paddingRight="16dp"
         style="@style/SqueezerWidget.NowPlaying.Timestamp"/>
 
     <LinearLayout
@@ -139,25 +166,34 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_below="@id/currenttime"
+        android:layout_below="@+id/currenttime"
         android:gravity="center"
-        android:background="#22FFFFFF"
         android:orientation="horizontal"
-        android:paddingBottom="4dp"
-        android:paddingRight="8dp">
+        android:paddingTop="4dp"
+        android:paddingBottom="32dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
 
         <uk.org.ngo.squeezer.widget.RepeatingImageButton
             android:id="@+id/prev"
+            android:padding="8dp"
+            android:layout_margin="8dp"
             style="@style/SqueezerWidget.MediaButton.Previous"/>
 
         <ImageButton
             android:id="@+id/pause"
+            android:padding="8dp"
+            android:layout_margin="8dp"
+            android:animateLayoutChanges="true"
             style="@style/SqueezerWidget.MediaButton.Play"/>
 
         <uk.org.ngo.squeezer.widget.RepeatingImageButton
             android:id="@+id/next"
+            android:padding="8dp"
+            android:layout_margin="8dp"
             style="@style/SqueezerWidget.MediaButton.Next"/>
     </LinearLayout>
+
 </RelativeLayout>
 
 

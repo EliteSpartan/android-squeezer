@@ -15,17 +15,39 @@
  limitations under the License.
 -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        app:elevation="8dp"
+        android:background="?attr/colorPrimary">
+
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:theme="@style/AppTheme.ToolbarStyle.Dark.Buttons"
+            app:popupTheme="@style/Theme.AppCompat"
+            style="@style/AppTheme.ToolbarStyle.Dark"
+            android:id="@+id/toolbar" />
+
+    </android.support.design.widget.AppBarLayout>
+
     <ExpandableListView
+        android:layout_below="@+id/app_bar"
         android:id="@+id/search_expandable_list"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/now_playing_fragment"
         android:fastScrollEnabled="true"/>
 
     <LinearLayout
@@ -45,15 +67,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="9dp"
-            android:text="@string/loading_text"
+            android:text="@null"
             android:textAppearance="@style/SqueezerTextAppearance.Medium"/>
     </LinearLayout>
 
     <fragment
         android:id="@+id/now_playing_fragment"
         android:name="uk.org.ngo.squeezer.NowPlayingFragment"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
         android:layout_height="60dp"
         tools:layout="@layout/now_playing_fragment_mini"/>
 
-</LinearLayout>
+</RelativeLayout>

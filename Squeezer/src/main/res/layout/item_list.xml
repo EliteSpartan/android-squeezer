@@ -38,14 +38,14 @@
             android:layout_height="wrap_content"
             android:clipToPadding="false"
             app:elevation="8dp"
-            android:layout_alignParentTop="true" >
+            android:background="?attr/colorPrimary">
 
             <android.support.v7.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
+                android:background="@android:color/transparent"
                 app:layout_scrollFlags="scroll|enterAlways"
-                app:popupTheme="@style/ThemeOverlay.AppCompat"
+                app:theme="@style/AppTheme.ToolbarStyle.Dark.Buttons"
                 app:contentInsetStart="@dimen/second_keyline"
                 android:id="@+id/toolbar" />
 
@@ -98,7 +98,6 @@
 
         <ListView android:id="@+id/item_list"
             android:scrollbarStyle="outsideInset"
-            android:background="?attr/colorPrimary"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/now_playing_fragment"

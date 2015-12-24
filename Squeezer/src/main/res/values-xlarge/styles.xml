@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Text on the NowPlayingFragment. -->
+    <!-- Primary and secondary text is one size larger. -->
+    <style name="SqueezerTextAppearance.NowPlaying.Primary" parent="SqueezerTextAppearance.Large.2"/>
+    <style name="SqueezerTextAppearance.NowPlaying.Secondary" parent="SqueezerTextAppearance.Medium"/>
+
+</resources>

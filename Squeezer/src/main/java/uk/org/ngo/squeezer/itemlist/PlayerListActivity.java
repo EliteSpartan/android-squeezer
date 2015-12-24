@@ -89,6 +89,7 @@ public class PlayerListActivity extends ItemListActivity implements
         if (toolbar != null) {
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_close);
         }
 
         if (savedInstanceState != null)

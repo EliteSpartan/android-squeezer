@@ -19,17 +19,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="?attr/colorPrimary"
     android:paddingLeft="0dp">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="256dp"
         android:clipToPadding="false"
-        app:elevation="8dp"
+        app:elevation="0dp"
         android:background="?attr/colorPrimary">
 
         <android.support.v7.widget.Toolbar
@@ -37,8 +36,10 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@android:color/transparent"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/ThemeOverlay.AppCompat"
+            app:theme="@style/AppTheme.ToolbarStyle.Dark.Buttons"
+            app:popupTheme="@style/Theme.AppCompat"
             app:contentInsetStart="@dimen/second_keyline"
+            style="@style/AppTheme.ToolbarStyle.Dark"
             android:id="@+id/toolbar" />
 
     </android.support.design.widget.AppBarLayout>
@@ -48,13 +49,15 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_alignParentTop="false"
-        android:layout_below="@+id/app_bar"
         android:animateLayoutChanges="true"
         android:cropToPadding="false"
-        android:layout_margin="16dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="?attr/actionBarSize"
         android:paddingBottom="4dp"
         android:paddingRight="0dp"
-        android:paddingTop="0dp"
+        android:paddingTop="16dp"
         android:scaleType="fitCenter"/>
 
     <!-- The trackname TextView needs to be wrapped in a LinearLayout.
@@ -84,21 +87,21 @@
 
     </LinearLayout>
 
-    <!-- HIDDEN -->
-        <TextView
-            android:id="@+id/albumname"
-            android:layout_below="@id/track_wrapper"
-            android:gravity="left|top"
-            android:paddingTop="4dp"
-            android:visibility="gone"
-            style="@style/SqueezerWidget.NowPlaying.AlbumName"/>
+    <TextView
+        android:id="@+id/albumname"
+        android:layout_below="@id/track_wrapper"
+        android:layout_toLeftOf="@+id/icons"
+        android:gravity="left|top"
+        android:paddingLeft="16dp"
+        android:paddingTop="4dp"
+        style="@style/SqueezerWidget.NowPlaying.AlbumName"/>
 
     <TextView
         android:paddingLeft="16dp"
-        android:paddingBottom="8dp"
+        android:paddingBottom="12dp"
         android:id="@+id/artistname"
         android:layout_toLeftOf="@+id/icons"
-        android:layout_below="@+id/track_wrapper"
+        android:layout_below="@+id/albumname"
         android:gravity="left|top"
         android:paddingTop="4dp"
         style="@style/SqueezerWidget.NowPlaying.ArtistName"/>
@@ -141,7 +144,7 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:animateLayoutChanges="true"
         android:layout_marginLeft="-16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginRight="-16dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -171,13 +174,13 @@
         android:orientation="horizontal"
         android:paddingTop="4dp"
         android:paddingBottom="32dp"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp">
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp">
 
         <uk.org.ngo.squeezer.widget.RepeatingImageButton
             android:id="@+id/prev"
             android:padding="8dp"
-            android:layout_margin="8dp"
+            android:layout_margin="12dp"
             style="@style/SqueezerWidget.MediaButton.Previous"/>
 
         <ImageButton
@@ -190,7 +193,7 @@
         <uk.org.ngo.squeezer.widget.RepeatingImageButton
             android:id="@+id/next"
             android:padding="8dp"
-            android:layout_margin="8dp"
+            android:layout_margin="12dp"
             style="@style/SqueezerWidget.MediaButton.Next"/>
     </LinearLayout>
 

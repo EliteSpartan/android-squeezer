@@ -65,6 +65,8 @@ public class DisconnectedActivity extends BaseActivity {
             mDisconnectionReason = extras.getInt(EXTRA_DISCONNECTION_REASON);
         }
 
+        overridePendingTransition(R.anim.abc_slide_in_bottom, R.anim.abc_shrink_fade_out_from_bottom);
+
         setContentView(R.layout.disconnected);
         serverAddressView = (ServerAddressView) findViewById(R.id.server_address_view);
         mHeaderMessage = (TextView) findViewById(R.id.header_message);
@@ -102,7 +104,7 @@ public class DisconnectedActivity extends BaseActivity {
 
         intent.putExtra(EXTRA_DISCONNECTION_REASON, disconnectionReason);
         activity.startActivity(intent);
-        activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        activity.overridePendingTransition(R.anim.abc_slide_in_bottom, R.anim.abc_shrink_fade_out_from_bottom);
     }
 
     /**

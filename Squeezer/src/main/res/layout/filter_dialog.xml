@@ -126,6 +126,7 @@
                 android:inputType="textNoSuggestions"
                 android:paddingBottom="4dp"
                 android:paddingTop="4dp" />
+
         </uk.org.ngo.squeezer.widget.FloatLabelLayout>
 
         <LinearLayout

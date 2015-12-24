@@ -11,7 +11,7 @@
         <clip>
             <shape>
                 <!-- #ff0099cc is android:color/holo_blue_dark. #ff0099cc -->
-                <solid android:color="#c62828"/>
+                <solid android:color="#78909c"/>
             </shape>
         </clip>
     </item>

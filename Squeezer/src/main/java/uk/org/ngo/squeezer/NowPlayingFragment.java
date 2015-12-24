@@ -35,7 +35,9 @@ import android.support.annotation.Nullable;
 import android.support.annotation.UiThread;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.SearchView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -49,6 +51,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -66,6 +69,7 @@ import uk.org.ngo.squeezer.itemlist.AlarmsActivity;
 import uk.org.ngo.squeezer.itemlist.AlbumListActivity;
 import uk.org.ngo.squeezer.itemlist.CurrentPlaylistActivity;
 import uk.org.ngo.squeezer.itemlist.PlayerListActivity;
+import uk.org.ngo.squeezer.itemlist.PlaylistsActivity;
 import uk.org.ngo.squeezer.itemlist.SongListActivity;
 import uk.org.ngo.squeezer.model.Artist;
 import uk.org.ngo.squeezer.model.Player;
@@ -106,33 +110,24 @@ public class NowPlayingFragment extends Fragment implements View.OnCreateContext
     private ImageView btnContextMenu;
 
     private TextView currentTime;
-
     private TextView totalTime;
 
     private MenuItem menu_item_connect;
-
     private MenuItem menu_item_disconnect;
-
     private MenuItem menu_item_poweron;
-
     private MenuItem menu_item_poweroff;
-
     private MenuItem menu_item_players;
-
     private MenuItem menu_item_playlist;
-
     private MenuItem menu_item_alarm;
-
     private MenuItem menu_item_search;
+    private MenuItem menu_item_settings;
+    private MenuItem menu_item_volume;
+    private MenuItem menu_item_about;
 
     private ImageButton playPauseButton;
-
     private ImageButton nextButton;
-
     private ImageButton prevButton;
-
     private ImageButton shuffleButton;
-
     private ImageButton repeatButton;
 
     private ImageView albumArt;
@@ -261,11 +256,12 @@ public class NowPlayingFragment extends Fragment implements View.OnCreateContext
             seekBar = (SeekBar) v.findViewById(R.id.seekbar);
 
             btnContextMenu = (ImageView) v.findViewById(R.id.context_menu);
-            btnContextMenu.setOnCreateContextMenuListener(this);
+//            btnContextMenu.setOnCreateContextMenuListener(this);
             btnContextMenu.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    v.showContextMenu();
+                    //v.showContextMenu();
+                    showPopup(v);
                 }
             });
             mFullHeightLayout = true;
@@ -392,6 +388,59 @@ public class NowPlayingFragment extends Fragment implements View.OnCreateContext
         }
 
         return v;
+    }
+
+    public void showPopup(View view) {
+        PopupMenu popupMenu = new PopupMenu(getContext(), view);
+        MenuInflater inflater = popupMenu.getMenuInflater();
+
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Song song = getCurrentSong();
+                if (song == null || song.isRemote()) {
+                    return false;
+                }
+
+                // Note: Very similar to code in SongView:doItemContext().  Refactor?
+                switch (item.getItemId()) {
+                    case R.id.download:
+                        mActivity.downloadItem(song);
+                        return true;
+
+                    case R.id.view_this_album:
+                        SongListActivity.show(getActivity(), song.getAlbum());
+                        return true;
+
+                    case R.id.view_albums_by_song:
+                        AlbumListActivity.show(getActivity(),
+                                new Artist(song.getArtistId(), song.getArtist()));
+                        return true;
+
+                    case R.id.view_songs_by_artist:
+                        SongListActivity.show(getActivity(),
+                                new Artist(song.getArtistId(), song.getArtist()));
+                        return true;
+
+                    default:
+                        throw new IllegalStateException("Unknown menu ID.");
+                }
+            }
+        });
+
+        inflater.inflate(R.menu.songcontextmenu, popupMenu.getMenu());
+
+        Menu menu = popupMenu.getMenu();
+
+        menu.findItem(R.id.play_now).setVisible(false);
+        menu.findItem(R.id.play_next).setVisible(false);
+        menu.findItem(R.id.add_to_playlist).setVisible(false);
+
+        menu.findItem(R.id.view_this_album).setVisible(true);
+        menu.findItem(R.id.view_albums_by_song).setVisible(true);
+        menu.findItem(R.id.view_songs_by_artist).setVisible(true);
+
+        popupMenu.show();
     }
 
     @UiThread
@@ -832,6 +881,23 @@ public class NowPlayingFragment extends Fragment implements View.OnCreateContext
         menu_item_playlist = menu.findItem(R.id.menu_item_playlist);
         menu_item_alarm = menu.findItem(R.id.menu_item_alarm);
         menu_item_search = menu.findItem(R.id.menu_item_search);
+        menu_item_settings = menu.findItem(R.id.menu_item_settings);
+        menu_item_volume = menu.findItem(R.id.menu_item_volume);
+        menu_item_about = menu.findItem(R.id.menu_item_about);
+
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.menu_item_search));
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                mActivity.onSearchRequested();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
     }
 
     /**
@@ -876,6 +942,24 @@ public class NowPlayingFragment extends Fragment implements View.OnCreateContext
 
         if (mActivity instanceof PlayerListActivity && menu_item_players != null) {
             menu_item_players.setVisible(false);
+            menu_item_search.setVisible(false);
+            menu_item_alarm.setVisible(false);
+            menu_item_playlist.setVisible(false);
+            menu_item_connect.setVisible(false);
+            menu_item_disconnect.setVisible(false);
+            menu_item_poweroff.setVisible(false);
+            menu_item_poweron.setVisible(false);
+            menu_item_settings.setVisible(false);
+            menu_item_volume.setVisible(false);
+        }
+
+        if (mActivity instanceof NowPlayingActivity ||
+                mActivity instanceof PlayerListActivity ||
+                mActivity instanceof PlaylistsActivity) {
+
+            menu_item_search.setVisible(false);
+        } else {
+            menu_item_search.setVisible(true);
         }
 
         updatePowerMenuItems(canPowerOn(), canPowerOff());
@@ -883,14 +967,33 @@ public class NowPlayingFragment extends Fragment implements View.OnCreateContext
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        Intent intent;
+
+        if (mActivity instanceof PlayerListActivity) {
+            switch (item.getItemId()) {
+                case R.id.home:
+                    getActivity().onBackPressed();
+                    return true;
+                case R.id.homeAsUp:
+                    getActivity().onBackPressed();
+                    return true;
+            }
+        }
         switch (item.getItemId()) {
+            case R.id.home:
+                getActivity().onBackPressed();
+                return true;
+            case R.id.homeAsUp:
+                getActivity().onBackPressed();
+                return true;
             case R.id.menu_item_settings:
-                Intent intent;
                 intent = new Intent(getActivity(), SettingsActivity.class);
                 startActivity(intent);
+                mActivity.overridePendingTransition(R.anim.abc_slide_in_bottom, R.anim.abc_shrink_fade_out_from_bottom);
                 return true;
             case R.id.menu_item_search:
-                mActivity.onSearchRequested();
+                // to fix
                 return true;
             case R.id.menu_item_connect:
                 onUserInitiatesConnect();
@@ -908,7 +1011,10 @@ public class NowPlayingFragment extends Fragment implements View.OnCreateContext
                 CurrentPlaylistActivity.show(mActivity);
                 break;
             case R.id.menu_item_players:
-                PlayerListActivity.show(mActivity);
+                //PlayerListActivity.show(mActivity);
+                intent = new Intent(getActivity(), PlayerListActivity.class);
+                startActivity(intent);
+                mActivity.overridePendingTransition(R.anim.abc_slide_in_bottom, R.anim.abc_shrink_fade_out_from_bottom);
                 return true;
             case R.id.menu_item_alarm:
                 AlarmsActivity.show(mActivity);

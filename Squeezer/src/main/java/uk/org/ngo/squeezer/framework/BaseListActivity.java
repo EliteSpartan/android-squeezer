@@ -18,6 +18,7 @@ package uk.org.ngo.squeezer.framework;
 
 
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -90,6 +91,14 @@ public abstract class BaseListActivity<T extends Item> extends ItemListActivity 
         mRetainFragment = RetainFragment.getInstance(TAG, getSupportFragmentManager());
 
         setContentView(getContentView());
+
+        // Set the toolbar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         mListView = checkNotNull((AbsListView) findViewById(R.id.item_list),
                 "getContentView() did not return a view containing R.id.item_list");
 

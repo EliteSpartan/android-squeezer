@@ -21,10 +21,11 @@
     <item
         android:icon="@drawable/ic_menu_search"
         android:id="@+id/menu_item_search"
+        squeezer:actionViewClass="android.support.v7.widget.SearchView"
         android:title="@string/menu_item_search_label"
         android:alphabeticShortcut="s"
         squeezer:showAsAction="always"
-        android:orderInCategory="3"/>
+        android:orderInCategory="0"/>
 
     <item
         android:id="@+id/menu_item_playlist"
@@ -32,14 +33,15 @@
         android:alphabeticShortcut="p"
         android:icon="@drawable/ic_menu_playlist"
         squeezer:showAsAction="ifRoom"
-        android:orderInCategory="0"/>
+        android:orderInCategory="1"/>
 
     <item
         android:id="@+id/menu_item_players"
         android:title="@string/menu_item_players"
         android:alphabeticShortcut="z"
         android:icon="@drawable/ic_menu_choose_player"
-        squeezer:showAsAction="always"/>
+        android:orderInCategory="2"
+        squeezer:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/menu_item_alarm"

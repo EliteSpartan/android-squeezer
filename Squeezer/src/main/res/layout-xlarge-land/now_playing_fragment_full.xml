@@ -28,9 +28,9 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="400dp"
         android:clipToPadding="false"
-        app:elevation="8dp"
+        app:elevation="0dp"
         android:background="?attr/colorPrimary">
 
         <android.support.v7.widget.Toolbar
@@ -38,7 +38,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@android:color/transparent"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/ThemeOverlay.AppCompat"
+            app:theme="@style/AppTheme.ToolbarStyle.Dark.Buttons"
             app:contentInsetStart="@dimen/second_keyline"
             android:id="@+id/toolbar" />
 
@@ -54,15 +54,15 @@
             android:id="@+id/album_wrapper"
             android:layout_marginTop="16dp"
             android:layout_centerHorizontal="true"
-            android:layout_width="424dp"
+            android:layout_width="444dp"
             android:layout_height="wrap_content">
 
             <uk.org.ngo.squeezer.widget.SquareImageView
                 android:id="@+id/album"
-                android:layout_width="400dp"
-                android:layout_height="400dp"
-                android:minHeight="400dp"
-                android:minWidth="400dp"
+                android:layout_width="420dp"
+                android:layout_height="420dp"
+                android:minHeight="420dp"
+                android:minWidth="420dp"
                 android:cropToPadding="false"
                 android:layout_centerHorizontal="true"
                 android:paddingBottom="0dp"
@@ -73,7 +73,7 @@
                 android:id="@+id/seekbar"
                 android:layout_centerHorizontal="true"
                 style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="424dp"
+                android:layout_width="444dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-16dp"
                 android:layout_marginBottom="4dp"
@@ -105,7 +105,6 @@
             android:id="@+id/trackname"
             android:layout_below="@+id/album_wrapper"
             android:gravity="center"
-            android:paddingRight="8dp"
             style="@style/SqueezerWidget.NowPlaying.SongName"/>
 
         <!-- Wrap the context menu view in a LinearLayout so that
@@ -116,9 +115,10 @@
             android:id="@+id/context_menu_wrapper"
             android:layout_below="@+id/album_wrapper"
             android:layout_alignRight="@+id/album_wrapper"
+            android:layout_alignTop="@+id/albumname"
             android:layout_width="48dp"
             android:gravity="bottom"
-            android:layout_height="64dp">
+            android:layout_height="74dp">
 
             <uk.org.ngo.squeezer.widget.ListItemImageButton
                 android:id="@+id/context_menu"
@@ -137,7 +137,6 @@
             android:layout_below="@id/trackname"
             android:gravity="center"
             android:paddingBottom="4dp"
-            android:paddingLeft="8dp"
             android:paddingTop="4dp"
             style="@style/SqueezerWidget.NowPlaying.AlbumName"/>
 
@@ -146,7 +145,6 @@
             android:layout_below="@id/albumname"
             android:gravity="center"
             android:paddingBottom="4dp"
-            android:paddingLeft="8dp"
             android:paddingTop="4dp"
             style="@style/SqueezerWidget.NowPlaying.ArtistName"/>
 
@@ -157,10 +155,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="48dp"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingBottom="4dp"
-        android:paddingLeft="8dp">
+        android:paddingBottom="4dp">
 
         <ImageButton
             android:id="@+id/shuffle"

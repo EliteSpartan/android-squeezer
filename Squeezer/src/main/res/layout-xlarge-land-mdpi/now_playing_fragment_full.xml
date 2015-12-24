@@ -46,25 +46,23 @@
 
     <!-- Main Content -->
     <RelativeLayout
-        android:id="@+id/main"
-        android:layout_centerInParent="true"
-        android:layout_centerHorizontal="true"
+        android:layout_marginTop="?attr/actionBarSize"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:id="@+id/album_wrapper"
             android:layout_marginTop="16dp"
             android:layout_centerHorizontal="true"
-            android:layout_width="624dp"
+            android:layout_width="405dp"
             android:layout_height="wrap_content">
 
             <uk.org.ngo.squeezer.widget.SquareImageView
                 android:id="@+id/album"
-                android:layout_width="600dp"
-                android:layout_height="600dp"
-                android:minHeight="600dp"
-                android:minWidth="600dp"
+                android:layout_width="380dp"
+                android:layout_height="380dp"
+                android:minHeight="420dp"
+                android:minWidth="420dp"
                 android:cropToPadding="false"
                 android:layout_centerHorizontal="true"
                 android:paddingBottom="0dp"
@@ -75,7 +73,7 @@
                 android:id="@+id/seekbar"
                 android:layout_centerHorizontal="true"
                 style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="624dp"
+                android:layout_width="405dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-16dp"
                 android:layout_marginBottom="4dp"
@@ -106,7 +104,6 @@
         <TextView
             android:id="@+id/trackname"
             android:layout_below="@+id/album_wrapper"
-            android:layout_width="match_parent"
             android:gravity="center"
             style="@style/SqueezerWidget.NowPlaying.SongName"/>
 
@@ -154,11 +151,12 @@
         <LinearLayout
             android:id="@+id/media_buttons"
             android:layout_below="@+id/artistname"
-            android:layout_width="624dp"
+            android:layout_width="600dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
-            android:layout_marginBottom="64dp"
+            android:layout_marginTop="48dp"
             android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="48dp"
             android:gravity="center"
             android:orientation="horizontal"
             android:paddingBottom="4dp">
@@ -185,5 +183,4 @@
         </LinearLayout>
 
     </RelativeLayout>
-
 </RelativeLayout>

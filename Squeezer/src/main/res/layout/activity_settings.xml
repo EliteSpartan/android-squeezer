@@ -5,13 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.Toolbar
-        android:layout_height="?android:attr/actionBarSize"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:id="@+id/toolbar"
-        android:elevation="8dp"
-        android:background="?attr/colorPrimary"
-        app:contentInsetStart="@dimen/second_keyline"/>
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        app:elevation="8dp"
+        android:background="?attr/colorPrimary">
+
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:theme="@style/AppTheme.ToolbarStyle.Dark.Buttons"
+            android:id="@+id/toolbar" />
+
+    </android.support.design.widget.AppBarLayout>
 
     <FrameLayout
         android:layout_marginTop="?android:attr/actionBarSize"

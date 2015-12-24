@@ -96,6 +96,7 @@ public class HomeActivity extends BaseActivity {
             Crashlytics.start(this);
         }
 
+        overridePendingTransition(R.anim.abc_slide_in_bottom, R.anim.abc_shrink_fade_out_from_bottom);
         setContentView(R.layout.item_list);
         listView = (ListView) findViewById(R.id.item_list);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);

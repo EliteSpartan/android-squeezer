@@ -18,11 +18,11 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp">
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
@@ -37,7 +37,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@android:color/transparent"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/ThemeOverlay.AppCompat"
+            app:theme="@style/AppTheme.ToolbarStyle.Dark.Buttons"
             app:contentInsetStart="@dimen/second_keyline"
             android:id="@+id/toolbar" />
 
@@ -45,46 +45,58 @@
 
     <uk.org.ngo.squeezer.widget.SquareImageView
         android:id="@+id/album"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_below="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:cropToPadding="false"
-        android:paddingBottom="4dp"
-        android:paddingTop="8dp"
+        android:layout_margin="16dp"
+        android:paddingBottom="0dp"
+        android:paddingTop="?attr/actionBarSize"
         android:scaleType="fitCenter"/>
 
-    <TextView
-        android:id="@+id/trackname"
+    <RelativeLayout
+        android:id="@+id/names"
+        android:paddingTop="60dp"
         android:layout_toRightOf="@id/album"
-        android:gravity="left"
-        android:paddingBottom="4dp"
-        android:paddingLeft="8dp"
-        android:paddingTop="8dp"
-        style="@style/SqueezerWidget.NowPlaying.SongName"/>
+        android:layout_marginRight="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_marginBottom="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/albumname"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/trackname"
-        android:layout_toLeftOf="@+id/context_menu_wrapper"
-        android:layout_toRightOf="@id/album"
-        android:gravity="left"
-        android:paddingBottom="4dp"
-        android:paddingLeft="8dp"
-        android:paddingTop="4dp"
-        style="@style/SqueezerWidget.NowPlaying.AlbumName"/>
+        <TextView
+            android:id="@+id/trackname"
+            android:gravity="center_horizontal"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/SqueezerWidget.NowPlaying.SongName"/>
 
-    <TextView
-        android:id="@+id/artistname"
-        android:layout_below="@id/albumname"
-        android:layout_toLeftOf="@+id/context_menu_wrapper"
-        android:layout_toRightOf="@id/album"
-        android:gravity="left"
-        android:paddingBottom="4dp"
-        android:paddingLeft="8dp"
-        android:paddingTop="4dp"
-        style="@style/SqueezerWidget.NowPlaying.ArtistName"/>
+        <TextView
+            android:id="@+id/albumname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/trackname"
+            android:gravity="center_horizontal"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
+            style="@style/SqueezerWidget.NowPlaying.AlbumName"/>
+
+        <TextView
+            android:id="@+id/artistname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/albumname"
+            android:gravity="center_horizontal"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
+            style="@style/SqueezerWidget.NowPlaying.ArtistName"/>
+
+    </RelativeLayout>
 
     <!-- Wrap the context menu view in a LinearLayout so that
          a gravity attribute can be applied to force the image
@@ -92,33 +104,63 @@
          bottom of the artistname view. -->
     <LinearLayout
         android:id="@+id/context_menu_wrapper"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/trackname"
-        android:layout_alignBottom="@id/artistname"
+        android:layout_alignBottom="@+id/names"
+        android:layout_alignRight="@+id/names"
         android:layout_width="48dp"
         android:gravity="bottom"
-        android:layout_height="64dp">
+        android:layout_height="48dp">
+
         <uk.org.ngo.squeezer.widget.ListItemImageButton
             android:id="@+id/context_menu"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:background="@drawable/list_selector_holo_dark"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
             android:minWidth="48dp"
             android:src="@drawable/dropdown_ic_arrow_normal_holo_dark"/>
+
     </LinearLayout>
 
+    <SeekBar
+        android:id="@+id/seekbar"
+        android:layout_below="@+id/names"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
+        android:layout_toRightOf="@+id/album" />
+
+    <TextView
+        android:id="@+id/currenttime"
+        android:layout_alignLeft="@+id/seekbar"
+        android:layout_below="@+id/seekbar"
+        android:layout_gravity="left"
+        android:layout_marginLeft="16dp"
+        android:layout_width="wrap_content"
+        style="@style/SqueezerWidget.NowPlaying.Timestamp"/>
+
+    <TextView
+        android:id="@+id/totaltime"
+        android:layout_alignRight="@+id/seekbar"
+        android:layout_below="@+id/seekbar"
+        android:layout_gravity="left"
+        android:layout_marginRight="16dp"
+        android:layout_width="wrap_content"
+        style="@style/SqueezerWidget.NowPlaying.Timestamp"/>
 
     <LinearLayout
         android:id="@+id/media_buttons"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/currenttime"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@id/album"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingBottom="4dp"
-        android:paddingLeft="8dp">
+        android:paddingBottom="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:layout_marginRight="16dp">
 
         <ImageButton
             android:id="@+id/shuffle"
@@ -139,29 +181,7 @@
         <ImageButton
             android:id="@+id/repeat"
             style="@style/SqueezerWidget.MediaButton.Repeat"/>
+
     </LinearLayout>
 
-    <SeekBar
-        android:id="@+id/seekbar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_toRightOf="@+id/album"
-        android:layout_toLeftOf="@id/totaltime"/>
-
-    <TextView
-        android:id="@+id/currenttime"
-        android:layout_above="@id/totaltime"
-        android:layout_alignParentRight="true"
-        android:layout_gravity="center_horizontal"
-        style="@style/SqueezerWidget.NowPlaying.Timestamp"/>
-
-    <TextView
-        android:id="@+id/totaltime"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_gravity="center_horizontal"
-        style="@style/SqueezerWidget.NowPlaying.Timestamp"/>
 </RelativeLayout>

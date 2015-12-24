@@ -49,19 +49,23 @@
 
         <item name="floatLabelColor">@color/float_label_dark</item>
 
-        <item name="colorPrimaryDark">#212121</item>
-        <item name="colorPrimary">#323232</item>
-        <item name="colorAccent">#b71c1c</item>
+        <!--<item name="colorPrimaryDark">#212121</item>-->
+        <!--<item name="colorPrimary">#323232</item>-->
+        <!--<item name="colorAccent">#b71c1c</item>-->
+
+        <item name="colorPrimaryDark">#263238</item>
+        <item name="colorPrimary">#37474f</item>
+        <item name="colorAccent">#78909c</item>
 
         <item name="windowActionBar">false</item>
         <item name="android:windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/background_material_dark</item>
 
         <item name="toolbarStyle">@style/AppTheme.ToolbarStyle.Dark</item>
         <item name="toolbarNavigationButtonStyle">@style/AppTheme.ToolbarStyle.Button.Navigation</item>
         <item name="actionOverflowButtonStyle">@style/AppTheme.ActionButton.Overflow</item>
-
-
+        <item name="searchViewStyle">@style/MySearchViewStyle</item>
 
     </style>
 
@@ -80,7 +84,7 @@
 
     </style>
 
-    <style name="AppTheme.Light" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme.Light" parent="Theme.AppCompat.Light">
         <item name="ic_action_av_connect">@drawable/presence_online</item>
         <item name="ic_action_av_next">@drawable/ic_action_av_next_holo_light</item>
         <item name="ic_action_av_pause">@drawable/ic_action_av_pause_holo_light</item>
@@ -111,12 +115,11 @@
 
         <item name="floatLabelColor">@color/float_label_light</item>
 
-        <item name="android:windowBackground">@color/windowBackgroundLight</item>
-        <item name="android:colorBackground">@android:color/background_light</item>
-
-        <item name="colorPrimaryDark">#212121</item>
-        <item name="colorPrimary">#323232</item>
+        <item name="colorPrimaryDark">#263238</item>
+        <item name="colorPrimary">#37474f</item>
         <item name="colorAccent">#b71c1c</item>
+
+        <item name="android:windowBackground">@color/background_material_light</item>
 
         <item name="toolbarStyle">@style/AppTheme.ToolbarStyle.Dark</item>
         <item name="toolbarNavigationButtonStyle">@style/AppTheme.ToolbarStyle.Button.Navigation</item>
@@ -339,7 +342,14 @@
         <item name="android:paddingLeft">@dimen/toolbar_horizontal_padding</item>
         <item name="android:paddingRight">@dimen/toolbar_horizontal_padding</item>
         <item name="contentInsetStart">@dimen/first_keyline</item>
-        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat</item>
+
+    </style>
+
+    <style name="AppTheme.ToolbarStyle.Dark.Buttons" parent="ThemeOverlay.AppCompat.Dark">
+
+        <item name="android:textColorSecondary">#78909c</item>
+        <item name="android:drawableTint">#78909c</item>
 
     </style>
 
@@ -366,6 +376,25 @@
         <item name="android:paddingLeft">0dp</item>
         <item name="android:paddingRight">0dp</item>
 
+    </style>
+
+    <style name="MySearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <!-- Background for the search query section (e.g. EditText) -->
+        <!--<item name="queryBackground"></item>-->
+        <!-- Background for the actions section (e.g. voice, submit) -->
+        <!--<item name="submitBackground"></item>-->
+        <!-- Close button icon -->
+        <!--<item name="closeIcon"></item>-->
+        <!-- Search button icon -->
+        <!--<item name="searchIcon"></item>-->
+        <!-- Go/commit button icon -->
+        <!--<item name="goIcon"></item>-->
+        <!-- Voice search button icon -->
+        <!--<item name="voiceIcon"></item>-->
+        <!-- Commit icon shown in the query suggestion row -->
+        <!--<item name="commitIcon"></item>-->
+        <!-- Layout for query suggestion rows -->
+        <!--<item name="suggestionRowLayout"></item>-->
     </style>
 
 </resources>
